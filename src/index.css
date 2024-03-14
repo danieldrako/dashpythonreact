@@ -1,0 +1,24 @@
+body {
+  padding: 7rem;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 2px solid #a09191;
+}
+
+thead, tfoot {
+  background-color: black;
+  color: aliceblue;
+}
+
+th,td {
+  text-align: left;
+  padding: 10px;
+}
+
+tr:nth-child(even){
+  background: #d1d0a9;
+}
