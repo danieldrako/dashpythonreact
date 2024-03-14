@@ -6,6 +6,7 @@ import {
   getFilteredRowModel
 } from '@tanstack/react-table'
 import axios from 'axios';
+import { CSVLink } from 'react-csv';
 import { useEffect, useState } from 'react';
 
 
@@ -65,6 +66,7 @@ function SimpleTable() {
         value={filtering}
         onChange={(e) => setFiltering(e.target.value)} 
       />
+      
       <table>
         <thead>
           {table.getHeaderGroups().map(headerGroup => (
@@ -124,6 +126,13 @@ function SimpleTable() {
       <button onClick={()=> table.setPageIndex(table.getPageCount()-1)}>
         Ultima Pagina
       </button>
+
+      <CSVLink
+        data={data}
+        filename={"table_data.csv"}
+      >
+        Download CSV
+      </CSVLink>
     </div>
   )
 }
