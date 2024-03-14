@@ -7,6 +7,8 @@ import {
 } from '@tanstack/react-table'
 import axios from 'axios';
 import { CSVLink } from 'react-csv';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 import { useEffect, useState } from 'react';
 
 
@@ -59,6 +61,47 @@ function SimpleTable() {
     onSortingChange: setSorting,
     onGlobalFilterChange: setFiltering,
   })
+
+
+
+
+
+
+
+  const options = {
+    chart: {
+      type: 'column'
+    },
+    title: {
+      text: 'Importe Total por Emisor'
+    },
+    xAxis: {
+      categories: data.map(item => item.emisor),
+      title: {
+        text: 'Emisor'
+      }
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: 'Importe Total'
+      }
+    },
+    series: [{
+      name: 'Importe Total',
+      data: data.map(item => item.importeTotal)
+    }]
+  };
+
+
+
+
+
+
+
+
+
+
   return (
     <div>
       <input 
@@ -133,6 +176,10 @@ function SimpleTable() {
       >
         Download CSV
       </CSVLink>
+
+      <div>
+      <HighchartsReact highcharts={Highcharts} options={options} />
+      </div>
     </div>
   )
 }
