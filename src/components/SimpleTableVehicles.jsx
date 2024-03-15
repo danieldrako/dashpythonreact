@@ -12,7 +12,7 @@ import HighchartsReact from 'highcharts-react-official';
 import { useEffect, useState } from 'react';
 
 
-function SimpleTable() {
+function SimpleTableVehicles() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ function SimpleTable() {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:8000/app/v1/conceptos');
+      const response = await axios.get('http://localhost:8000/app/v1/vehiculos');
       setData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -31,17 +31,101 @@ function SimpleTable() {
 
   const columns = [
     {
-      id: "emisor",
-      header: "EMI",
-      accessorKey: "emisor",
-      footer: "Emisor"
+      id: "uuid",
+      header: "uuid",
+      accessorKey: "uuid",
+      footer: "uuid"
     },
     {
-      id: "importeTotal",
-      header: "Importe",
-      accessorKey: "importeTotal",
-      footer: "ImporteTotal"
-    }
+      id: "IdConcepto",
+      header: "IdConcepto",
+      accessorKey: "idConcepto",
+      footer: "idConcepto"
+    },
+    {
+      id: "version",
+      header: "version",
+      accessorKey: "version",
+      footer: "version"
+    },
+    {
+      id: "claveVehicular",
+      header: "claveVehicular",
+      accessorKey: "claveVehicular",
+      footer: "claveVehicular"
+    },
+    {
+      id: "niv",
+      header: "niv",
+      accessorKey: "niv",
+      footer: "niv"
+    },
+    {
+      id: "fechaFactura",
+      header: "fechaFactura",
+      accessorKey: "fechaFactura",
+      footer: "fechaFactura"
+    },
+    {
+      id: "descripcion",
+      header: "descripcion",
+      accessorKey: "descripcion",
+      footer: "descripcion"
+    },
+    {
+      id: "importe",
+      header: "importe",
+      accessorKey: "importe",
+      footer: "importe"
+    },
+    {
+      id: "valorUnitario",
+      header: "valorUnitario",
+      accessorKey: "valorUnitario",
+      footer: "valorUnitario"
+    },
+    {
+      id: "descuento",
+      header: "descuento",
+      accessorKey: "descuento",
+      footer: "descuento"
+    },
+    {
+      id: "claveProdServ",
+      header: "claveProdServ",
+      accessorKey: "claveProdServ",
+      footer: "claveProdServ"
+    },
+    {
+      id: "cantidad",
+      header: "cantidad",
+      accessorKey: "cantidad",
+      footer: "cantidad"
+    },
+    {
+      id: "unidad",
+      header: "unidad",
+      accessorKey: "unidad",
+      footer: "unidad"
+    },
+    {
+      id: "noIdentificacion",
+      header: "noIdentificacion",
+      accessorKey: "noIdentificacion",
+      footer: "noIdentificacion"
+    },
+    {
+      id: "emisor",
+      header: "emisor",
+      accessorKey: "emisor",
+      footer: "emisor"
+    },
+    {
+      id: "receptor",
+      header: "receptor",
+      accessorKey: "receptor",
+      footer: "receptor"
+    },
   ];
 
   const [sorting, setSorting] = useState([])
@@ -68,30 +152,30 @@ function SimpleTable() {
 
 
 
-  const options = {
-    chart: {
-      type: 'column'
-    },
-    title: {
-      text: 'Importe Total por Emisor'
-    },
-    xAxis: {
-      categories: data.map(item => item.emisor),
-      title: {
-        text: 'Emisor'
-      }
-    },
-    yAxis: {
-      min: 0,
-      title: {
-        text: 'Importe Total'
-      }
-    },
-    series: [{
-      name: 'Importe Total',
-      data: data.map(item => item.importeTotal)
-    }]
-  };
+  // const options = {
+  //   chart: {
+  //     type: 'column'
+  //   },
+  //   title: {
+  //     text: 'Importe Total por Emisor'
+  //   },
+  //   xAxis: {
+  //     categories: data.map(item => item.emisor),
+  //     title: {
+  //       text: 'Emisor'
+  //     }
+  //   },
+  //   yAxis: {
+  //     min: 0,
+  //     title: {
+  //       text: 'Importe Total'
+  //     }
+  //   },
+  //   series: [{
+  //     name: 'Importe Total',
+  //     data: data.map(item => item.importeTotal)
+  //   }]
+  // };
 
 
 
@@ -104,7 +188,7 @@ function SimpleTable() {
 
   return (
     <div>
-      <h2> Importe de Vehiculos por emisor</h2>
+      <h2> Conceptos relacionados a vehiculos </h2>
       <input 
         type="text"
         value={filtering}
@@ -178,11 +262,11 @@ function SimpleTable() {
         Download CSV
       </CSVLink>
 
-      <div>
+      {/* <div>
       <HighchartsReact highcharts={Highcharts} options={options} />
-      </div>
+      </div> */}
     </div>
   )
 }
 
-export default SimpleTable
+export default SimpleTableVehicles
