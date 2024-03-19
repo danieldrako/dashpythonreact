@@ -1,13 +1,26 @@
 body {
-  padding: 7rem;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  padding: 0rem 1rem;
+  font-family: "Gill Sans", "Gill Sans MT", "Trebuchet MS", sans-serif;
+}
+
+header{
+  background-color: black;
+  color: aliceblue;
+  padding: 1rem 1rem;
+  margin: 0 0;
+  width: 100%;
 }
 
 table {
+  overflow-x: auto;
+  width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
+  border: 2px solid #969595;
+}
+.tabla{
+  overflow-x: auto;
   width: 100%;
-  border: 2px solid #a09191;
 }
 
 thead, tfoot {
@@ -21,5 +34,32 @@ th,td {
 }
 
 tr:nth-child(even){
-  background: #e6e5d2;
+  background: #d4d4d4;
+}
+
+.buttons{
+  margin: 0.5rem 1rem;
+  
+}
+
+
+.css-button-fully-rounded--grey {
+  min-width: 8rem;
+  height: 2rem;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border-radius: 20px;
+  border: 2px solid #495057;
+  background: #495057;
+  margin-right: 0.5rem;
+}
+.css-button-fully-rounded--grey:hover {
+  background: #fff;
+  color: #495057
 }

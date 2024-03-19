@@ -158,22 +158,24 @@ function SimpleTable() {
           }
         </tfoot>
       </table>
-      <button onClick={()=> table.setPageIndex(0)}>
-        Primer Pagina
-      </button>
-      <button onClick={()=> table.previousPage()}>
-        Pagina Anterior
-      </button>
-      <button onClick={()=> table.nextPage()}>
-        Pagina Siguiente
-      </button>
-      <button onClick={()=> table.setPageIndex(table.getPageCount()-1)}>
-        Ultima Pagina
-      </button>
+      <div className='buttons'>
+          <button className='css-button-fully-rounded--grey' onClick={()=> table.setPageIndex(0)}>
+            Primer Pagina
+          </button>
+          <button className='css-button-fully-rounded--grey' onClick={()=> table.previousPage()}>
+            Pagina Anterior
+          </button>
+          <button className='css-button-fully-rounded--grey' onClick={()=> table.nextPage()}>
+            Pagina Siguiente
+          </button>
+          <button className='css-button-fully-rounded--grey' onClick={()=> table.setPageIndex(table.getPageCount()-1)}>
+            Ultima Pagina
+          </button>
+        </div>
 
-      <CSVLink
+      <CSVLink className='css-button-fully-rounded--grey'
         data={data}
-        filename={"table_data.csv"}
+        filename={"general_data.csv"}
       >
         Download CSV
       </CSVLink>

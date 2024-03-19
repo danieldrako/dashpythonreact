@@ -27,7 +27,23 @@ function SimpleTableNivRepetidos() {
         console.error('Error fetching data:', error);
       }
     };
-    console.log(data)
+
+    const [dataTotal, setDataTotal] = useState([]);
+  
+    useEffect(() => {
+      fetchDataTotal();
+    }, []);
+  
+    const fetchDataTotal = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/app/v1/niv_repetidos_total_emisor');
+        setDataTotal(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    console.log(dataTotal)
+
   
     const columns = [
       {
@@ -152,30 +168,30 @@ function SimpleTableNivRepetidos() {
   
   
   
-    // const options = {
-    //   chart: {
-    //     type: 'column'
-    //   },
-    //   title: {
-    //     text: 'Importe Total por Emisor'
-    //   },
-    //   xAxis: {
-    //     categories: data.map(item => item.emisor),
-    //     title: {
-    //       text: 'Emisor'
-    //     }
-    //   },
-    //   yAxis: {
-    //     min: 0,
-    //     title: {
-    //       text: 'Importe Total'
-    //     }
-    //   },
-    //   series: [{
-    //     name: 'Importe Total',
-    //     data: data.map(item => item.importeTotal)
-    //   }]
-    // };
+    const options = {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Importe Total por Emisor'
+      },
+      xAxis: {
+        categories: dataTotal.map(item => item.emisor),
+        title: {
+          text: 'Emisor'
+        }
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Importe Total'
+        }
+      },
+      series: [{
+        name: 'Importe Total',
+        data: dataTotal.map(item => item.importe_total)
+      }]
+    };
   
   
   
@@ -195,6 +211,8 @@ function SimpleTableNivRepetidos() {
           onChange={(e) => setFiltering(e.target.value)} 
         />
         
+        
+        <div className="tabla">
         <table>
           <thead>
             {table.getHeaderGroups().map(headerGroup => (
@@ -242,29 +260,34 @@ function SimpleTableNivRepetidos() {
             }
           </tfoot>
         </table>
-        <button onClick={()=> table.setPageIndex(0)}>
-          Primer Pagina
-        </button>
-        <button onClick={()=> table.previousPage()}>
-          Pagina Anterior
-        </button>
-        <button onClick={()=> table.nextPage()}>
-          Pagina Siguiente
-        </button>
-        <button onClick={()=> table.setPageIndex(table.getPageCount()-1)}>
-          Ultima Pagina
-        </button>
+
+        </div>
+
+        <div className='buttons'>
+          <button className='css-button-fully-rounded--grey' onClick={()=> table.setPageIndex(0)}>
+            Primer Pagina
+          </button>
+          <button className='css-button-fully-rounded--grey' onClick={()=> table.previousPage()}>
+            Pagina Anterior
+          </button>
+          <button className='css-button-fully-rounded--grey' onClick={()=> table.nextPage()}>
+            Pagina Siguiente
+          </button>
+          <button className='css-button-fully-rounded--grey' onClick={()=> table.setPageIndex(table.getPageCount()-1)}>
+            Ultima Pagina
+          </button>
+        </div>
+
+      <CSVLink className='css-button-fully-rounded--grey'
+        data={data}
+        filename={"niv_rep_data.csv"}
+      >
+        Download CSV
+      </CSVLink>
   
-        <CSVLink
-          data={data}
-          filename={"table_data.csv"}
-        >
-          Download CSV
-        </CSVLink>
-  
-        {/* <div>
+        <div>
         <HighchartsReact highcharts={Highcharts} options={options} />
-        </div> */}
+        </div>
       </div>
     )
   }
