@@ -63,3 +63,14 @@ tr:nth-child(even){
   background: #fff;
   color: #495057
 }
+
+.loader{
+  text-align: center;
+  justify-content: center;
+}
+.ring{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  margin: 1rem 1rem;
+}
